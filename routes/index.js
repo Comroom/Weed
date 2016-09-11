@@ -10,4 +10,11 @@ router.get('/chat', function(req, res, next) {
   res.render('chat');
 });
 
+router.get('/chat/:chatId', function(req, res, next){
+  res.render('chat');
+});
+
+router.get('/logout', function(req, res, next){
+  res.render('index');
+});
 module.exports = router;
