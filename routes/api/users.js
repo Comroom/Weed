@@ -5,7 +5,7 @@ var users = db['users'];
 const regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
 router.get('/', function(req, res, next) {
-  res.send("/users");
+  res.send("/api/users");
 });
 
 router.post('/signup', function(req, res){

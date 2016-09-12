@@ -5,23 +5,23 @@ const server = require('../../app.js');
 
 chai.use(chaiHttp);
 
-describe('API /users Endpoint Test', () => {
-  describe('GET request on /users', () => {
+describe('API /api/users Endpoint Test', () => {
+  describe('GET request on /api/users', () => {
     it('should return 200', (done) => {
       chai.request(server)
-      .get('/users')
+      .get('/api/users')
       .end((err, res) => {
         res.should.have.status(200);
         done();
       });
     });
 
-    it('should return "/users"', (done) => {
+    it('should return "/api/users"', (done) => {
       chai.request(server)
-      .get('/users')
+      .get('/api/users')
       .end((err, res) => {
         res.should.have.status(200);
-        res.text.should.equal('/users');
+        res.text.should.equal('/api/users');
         done();
       });
     });
