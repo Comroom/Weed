@@ -18,6 +18,8 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "eslint": "^3.4.0",
+    "eslint-config-google": "^0.6.0",
     "mocha": "^3.0.2"
   }
 }
