@@ -1,4 +1,7 @@
 module.exports = {
     "extends": "google",
-    "installedESLint": true
+    "installedESLint": true,
+    "rules": {
+      "no-multiple-empty-lines": 0
+    }
 };
