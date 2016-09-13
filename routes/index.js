@@ -7,31 +7,47 @@ router.get('/', function(req, res, next) {
   if(req.isAuthenticated()){
     res.redirect('/chat');
   }else{
-    res.render('index', { title: 'Express' });
+    res.render('index');
+  }
+});
+
+router.get('/chat', function(req, res, next) {
+  if(req.isAuthenticated()){
+    res.render('chat');
+  }else{
+    res.redirect('/');
+  }
+});
+
+router.get('/chat/:chatId', function(req, res, next){
+  if(req.isAuthenticated()){
+    res.render('chat');
+  }else{
+    res.redirect('/');
+  }
+});
+
+router.get('/signup', function(req, res, next){
+  if(req.isAuthenticated()){
+    res.redirect('/');
+  }else{
+    res.render('signup');
   }
 });
 
 router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login_fail', failureFlash: true }),
+    passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
     function(req, res){
-      res.redirect('/login_success');
-});
-
-router.get('/login_success', ensureAuthenticated, function(req, res){
-  res.send(req.user);
+      res.redirect('/chat');
 });
 
 router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
-
-function ensureAuthenticated(req, res, next){
   if(req.isAuthenticated()){
-    return next();
+    req.logout();
+    res.redirect('/');
   }else{
     res.redirect('/');
   }
-}
+});
 
 module.exports = router;
