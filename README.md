@@ -4,3 +4,4 @@
 
 ## 필요 패키지
 - Node.js v6.x
+- nedb
