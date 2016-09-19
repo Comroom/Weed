@@ -3,36 +3,37 @@ var passport = require('passport')
 var users = db['users'];
 
 passport.serializeUser(function(user, done){
-  console.log('serialize');
-  done(null, user.email);
+  done(null, user);
 });
 
-passport.deserializeUser(function(email, done){
-  console.log('deserialize');
-  console.log(email);
-
-  done(null, email);
+passport.deserializeUser(function(user, done){
+  done(null, user);
 });
 
 passport.use(new LocalStrategy({
-    usernameField : 'userid',
+    usernameField : 'email',
     passwordField : 'password',
     passReqToCallback : true
   },
-  function(req, userid, password, done){
+  function(req, email, password, done){
     var user = {
-      'email' : userid,
-      'password' : password
+      'email' : email
     };
-    users.find(user, function(err, docs){
+    users.findOne(user, function(err, doc){
       if(err){
         return done(err, false);
       }else{
-        if(docs.length == 0){
+        if( doc == null){
           return done(null, false);
+        }
+        if( doc.password === password ){
+          return done(null, {
+            _id : doc._id,
+            email : doc.email,
+            name : doc.name
+          });
         }else{
-          console.log("correct!!");
-          return done(null, user);
+          return done(null, false);
         }
       }
     });
