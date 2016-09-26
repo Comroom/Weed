@@ -1,5 +1,7 @@
 # 설치형 채팅 플랫폼 WEED
 
+[![Build Status](https://travis-ci.org/Comroom/Weed.svg?branch=travis)](https://travis-ci.org/Comroom/Weed)
+
 설치형 채팅 플랫폼 Weed
 
 ## 필요 패키지

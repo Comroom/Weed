@@ -15,15 +15,5 @@ describe('API /api/users Endpoint Test', () => {
         done();
       });
     });
-
-    it('should return "/api/users"', (done) => {
-      chai.request(server)
-      .get('/api/users')
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.text.should.equal('/api/users');
-        done();
-      });
-    });
   });
 });
