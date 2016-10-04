@@ -100,78 +100,27 @@
                   <!-- /.panel-heading -->
                   <div class="panel-body">
                       <ul class="chat">
-                          <li class="left clearfix">
-                              <span class="chat-img pull-left">
-                                  <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
-                              </span>
-                              <div class="chat-body clearfix">
-                                  <div class="header">
-                                      <strong class="primary-font">Jack Sparrow</strong>
-                                      <small class="pull-right text-muted">
-                                          <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
-                                      </small>
-                                  </div>
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="right clearfix">
-                              <span class="chat-img pull-right">
-                                  <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
-                              </span>
-                              <div class="chat-body clearfix">
-                                  <div class="header">
-                                      <small class=" text-muted">
-                                          <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
-                                      <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                  </div>
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="left clearfix">
-                              <span class="chat-img pull-left">
-                                  <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
-                              </span>
-                              <div class="chat-body clearfix">
-                                  <div class="header">
-                                      <strong class="primary-font">Jack Sparrow</strong>
-                                      <small class="pull-right text-muted">
-                                          <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
-                                  </div>
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="right clearfix">
-                              <span class="chat-img pull-right">
-                                  <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle">
-                              </span>
-                              <div class="chat-body clearfix">
-                                  <div class="header">
-                                      <small class=" text-muted">
-                                          <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
-                                      <strong class="pull-right primary-font">Bhaumik Patel</strong>
-                                  </div>
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
                       </ul>
                   </div>
                   <!-- /.panel-body -->
                   <div class="panel-footer">
                       <div class="input-group">
-                          <input id="btn-input" type="text" class="form-control input-sm" placeholder="메시지를 입력해주세요...">
-                          <span class="input-group-btn">
-                              <button class="btn btn-warning btn-sm" id="btn-chat">
-                                  보내기
+                          <div class="input-group-btn">
+                              <button class="btn btn-warning btn-sm" id="btn-fileUpload">
+                                  <b>
+                                    +
+                                  </b>
                               </button>
-                          </span>
+                              <input type="file" id="btn-hidden-fileUpload" name="file" style="display:none;visibility:hidden"></input>
+                          </div>
+                          <input id="btn-input" type="text" class="form-control input-sm" placeholder="메시지를 입력해주세요...">
+                          <div class="input-group-btn">
+                              <button class="btn btn-warning btn-sm" id="btn-chat">
+                                  <b>
+                                    보내기
+                                  </b>
+                              </button>
+                          </div>
                       </div>
                   </div>
                   <!-- /.panel-footer -->
@@ -191,5 +140,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/webchat.js"></script>
+    <script src="/js/fileupload.js"></script>
 </body>
 </html>

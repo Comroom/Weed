@@ -1,6 +1,7 @@
 var socket = io.connect('/');
 var name = '';
 var id = '';
+var email = '';
 
 $.ajax({
   url : '/api/users',
@@ -23,7 +24,6 @@ $('#btn-input').keyup(function(event) {
 });
 
 socket.on('toclient', function(data) {
-  console.log(data.msg);
   $('.chat').append('<li class="left clearfix">\
       <span class="chat-img pull-left">\
           <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">\
@@ -36,12 +36,12 @@ socket.on('toclient', function(data) {
               </small>\
           </div>\
           <p>'
-          + data.msg +
+          + (( data.type === "file") ? '<a href="/upload/'+data.msg+'">' + data.msg + '</a>': data.msg) +
           '</p>\
       </div>\
   </li>\
   <br>');
   setTimeout(function(){
     $('.panel-body').scrollTop($('.chat').height());
-  }, 1);
+  }, 200);
 });

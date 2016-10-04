@@ -1,5 +1,5 @@
 var server = require('../bin/www');
-var io = require('socket.io').listen(server);
+global.io = require('socket.io').listen(server);
 var chat = db['chat'];
 
 io.sockets.on('connection', function(socket) {
