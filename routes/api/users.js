@@ -6,7 +6,6 @@ var users = db['users'];
 const regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 
 router.get('/', function(req, res, next) {
-  console.log(req.user);
   res.json(req.user);
 });
 
