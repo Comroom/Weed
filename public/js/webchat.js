@@ -17,7 +17,7 @@ $('#btn-input').keyup(function(event) {
     var msg = $('#btn-input').val();
     if( msg === '')
       return;
-    socket.emit('fromclient', {id : id, email : email, name : name, msg: $('#btn-input').val()});
+    socket.emit('fromclient', { userid : id, email : email, name : name, msg: $('#btn-input').val()});
     $('#btn-input').val('');
   }
 });
