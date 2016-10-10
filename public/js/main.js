@@ -30,3 +30,9 @@ $('form a[role=login]').click(function(){
     }
   })
 });
+
+$('input[type=password]').keypress(function(event){
+  if(event.which === 13){
+    $('form a[role=login]').trigger('click');
+  }
+});
