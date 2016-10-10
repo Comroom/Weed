@@ -120,4 +120,19 @@ router.get('/logout', function(req, res){
   }
 });
 
+router.get('/search', function(req, res){
+  res.redirect('/chat');
+});
+
+router.get('/search/:message', function(req, res){
+  if(req.isAuthenticated()){
+    const regex = new RegExp(req.params.message);
+    chat.find({ msg : { $regex : regex }}).sort({ createdAt : -1 }).exec((err, docs) => {
+      res.render('search',{ result : docs });
+    });
+  }else{
+    res.redirect('/');
+  }
+});
+
 module.exports = router;

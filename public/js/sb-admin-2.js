@@ -44,4 +44,16 @@ $(function() {
             break;
         }
     }
+
+    $('.sidebar-search button').click(function(){
+      var message = $('.sidebar-search input').val();
+      location.href = "/search/" + message;
+    });
+
+    $('.sidebar-search input').keypress(function(event){
+      if(event.which == 13){
+        var message = $('.sidebar-search input').val();
+        location.href = "/search/" + message;
+      }
+    });
 });

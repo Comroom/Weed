@@ -33,47 +33,36 @@
               <br/>
               <div class="chat-panel panel panel-default">
                   <div class="panel-heading">
-                      <i class="fa fa-comments fa-fw"></i> 일반
-                      <div class="btn-group pull-right">
-                          <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                              <i class="fa fa-chevron-down"></i>
-                          </button>
-                          <ul class="dropdown-menu slidedown">
-                              <li>
-                                  <a href="#">
-                                      <i class="fa fa-refresh fa-fw"></i> 다시 불러오기
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
+                      <i class="fa fa-comments fa-fw"></i> 검색결과
                   </div>
                   <!-- /.panel-heading -->
                   <div class="panel-body">
                       <ul class="chat">
+                        <% for(var i=0; i< result.length; i++ ){ %>
+                          <li class="left clearfix">
+                              <span class="chat-img pull-left">
+                                  <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle">
+                              </span>
+                              <div class="chat-body clearfix">
+                                  <div class="header">
+                                      <strong class="primary-font"><%= result[i].name %></strong>
+                                      <small class="pull-right text-muted">
+                                          <i class="fa fa-clock-o fa-fw"></i><%= result.createdAt %>
+                                      </small>
+                                  </div>
+                                  <p>
+                                    <% if( result[i].type === "file") { %>
+                                      <a href="/upload/<%= result[i].msg %>"> <%= result[i].msg %> </a>
+                                    <% }else { %>
+                                      <%= result[i].msg %>
+                                    <% } %>
+                                  </p>
+                              </div>
+                          </li>
+                          <br>
+                        <% } %>
                       </ul>
                   </div>
-                  <!-- /.panel-body -->
-                  <div class="panel-footer">
-                      <div class="input-group">
-                          <div class="input-group-btn">
-                              <button class="btn btn-warning btn-sm" id="btn-fileUpload">
-                                  <b>
-                                    +
-                                  </b>
-                              </button>
-                              <input type="file" id="btn-hidden-fileUpload" name="file" style="display:none;visibility:hidden"></input>
-                          </div>
-                          <input id="btn-input" type="text" class="form-control input-sm" placeholder="메시지를 입력해주세요...">
-                          <div class="input-group-btn">
-                              <button class="btn btn-warning btn-sm" id="btn-chat">
-                                  <b>
-                                    보내기
-                                  </b>
-                              </button>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- /.panel-footer -->
               </div>
             </div>
             <!-- /.row -->
@@ -89,7 +78,5 @@
     <script src="/vendor/metisMenu/metisMenu.min.js"></script>
     <!-- Custom Theme JavaScript -->
     <script src="/js/sb-admin-2.js"></script>
-    <script src="/js/webchat.js"></script>
-    <script src="/js/fileupload.js"></script>
 </body>
 </html>
