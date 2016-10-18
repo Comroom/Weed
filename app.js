@@ -12,6 +12,7 @@ const passport = require('passport');
 const routes = require('./routes/index');
 const users = require('./routes/api/users');
 const chat = require('./routes/api/chat');
+const chatRoom = require('./routes/api/chatRoom');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/api/users', users);
 app.use('/api/chat', chat);
+app.use('/api/chat/room', chatRoom);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

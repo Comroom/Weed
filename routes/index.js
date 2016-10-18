@@ -7,6 +7,7 @@ var fse = require('fs-extra');
 var async = require('async');
 var path = require('path');
 var chat = db['chat'];
+var chatRoom = db['chatRoom'];
 
 router.get('/', function(req, res, next) {
   if(req.isAuthenticated()){
@@ -18,7 +19,9 @@ router.get('/', function(req, res, next) {
 
 router.get('/chat', function(req, res, next) {
   if(req.isAuthenticated()){
-    res.render('chat');
+    chatRoom.find({}).sort({createdAt: 1}).exec((err, docs) => {
+      res.render('chat', { rooms : docs });
+    });
   }else{
     res.redirect('/');
   }
@@ -91,7 +94,9 @@ router.get('/upload/:filename', (req, res) => {
 
 router.get('/chat/:chatId', function(req, res, next){
   if(req.isAuthenticated()){
-    res.render('chat');
+    chatRoom.find({}).sort({createdAt: 1}).exec((err, docs) => {
+      res.render('chat', { rooms : docs });
+    });
   }else{
     res.redirect('/');
   }
@@ -109,9 +114,6 @@ router.post('/login',
     passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
     function(req, res){
       res.redirect('/chat');
-});
-
-router.get('/logout', function(req, res){
   if(req.isAuthenticated()){
     req.logout();
     res.redirect('/');

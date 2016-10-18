@@ -24,14 +24,18 @@
                     </div>
                 </li>
                 <li>
+                    <a id="btn-addChatRoom"> 채팅방 +</a>
+                </li>
+                <li>
                     <a href="/chat"><i class="fa fa-dashboard fa-fw"></i> 일반</a>
                 </li>
-                <li>
-                    <a href="/chat/1"><i class="fa fa-dashboard fa-fw"></i> 전체회의</a>
-                </li>
-                <li>
-                    <a href="/chat/2"><i class="fa fa-dashboard fa-fw"></i> 기획</a>
-                </li>
+                <% for(var i=0; i< rooms.length; i++){ %>
+                  <li>
+                      <a href="/chat/<%= rooms[i].roomName %>"><i class="fa fa-dashboard fa-fw"></i><%= rooms[i].roomName %></a>
+                  </li>
+                <% } %>
+                <div class="nav" id="nav">
+                </div>
                 <li>
                     <a href="/chat/3"><i class="fa fa-dashboard fa-fw"></i> 환경설정</a>
                 </li>

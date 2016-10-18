@@ -13,12 +13,16 @@ $.ajax({
   }
 });
 
+var roomName = window.location.pathname.split('/')[2];
+roomName = (roomName === undefined) ? 'general' : roomName;
+socket.emit('roomName',roomName);
+
 $('#btn-input').keyup(function(event) {
   if (event.which === 13) {
     var msg = $('#btn-input').val();
     if( msg === '')
       return;
-    socket.emit('fromclient', { userid : id, email : email, name : name, msg: $('#btn-input').val()});
+    socket.emit('fromclient', { userid : id, email : email, name : name, msg: $('#btn-input').val(), roomName : roomName });
     $('#btn-input').val('');
   }
 });
