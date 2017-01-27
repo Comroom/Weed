@@ -7,3 +7,14 @@
 ## 필요 패키지
 - Node.js v6.x
 - nedb
+
+## 서버 실행
+`
+npm install
+`
+`
+npm run build
+`
+`
+npm start
+`

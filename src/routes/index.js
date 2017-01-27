@@ -1,33 +1,33 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('../controller/passport');
-var upload = require('../controller/multer');
-var fs = require('fs');
-var fse = require('fs-extra');
-var async = require('async');
-var path = require('path');
-var chat = db['chat'];
-var chatRoom = db['chatRoom'];
+/* eslint handle-callback-err:0*/
+import {Router} from 'express';
+import passport from '../controller/passport';
+import upload from '../controller/multer';
+import fse from 'fs-extra';
+import async from 'async';
+import path from 'path';
+import {chat, chatRoom} from '../db';
+const router = Router();
 
-router.get('/', function(req, res, next) {
-  if(req.isAuthenticated()){
+router.get('/', (req, res, next) => {
+  if (req.isAuthenticated()) {
     res.redirect('/chat');
-  }else{
+  } else {
     res.render('index');
   }
 });
 
-router.get('/chat', function(req, res, next) {
-  if(req.isAuthenticated()){
+
+router.get('/chat', (req, res) => {
+  if (req.isAuthenticated()) {
     chatRoom.find({}).sort({createdAt: 1}).exec((err, docs) => {
-      res.render('chat', { rooms : docs });
+      res.render('chat', {rooms: docs});
     });
-  }else{
+  } else {
     res.redirect('/');
   }
 });
 
-router.post('/upload', upload.single('file'), function(req, res) {
+router.post('/upload', upload.single('file'), (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const id = req.body.id;
@@ -68,7 +68,7 @@ router.post('/upload', upload.single('file'), function(req, res) {
           return;
         }
         res.status(200).end();
-        io.emit('toclient', doc); //global.io
+        global.io.emit('toclient', doc);
       });
     }
   ]);
@@ -92,49 +92,58 @@ router.get('/upload/:filename', (req, res) => {
   ]);
 });
 
-router.get('/chat/:chatId', function(req, res, next){
-  if(req.isAuthenticated()){
+
+router.get('/chat/:chatId', (req, res) => {
+  if (req.isAuthenticated()) {
     chatRoom.find({}).sort({createdAt: 1}).exec((err, docs) => {
-      res.render('chat', { rooms : docs });
+      res.render('chat', {rooms: docs});
     });
-  }else{
+  } else {
     res.redirect('/');
   }
 });
 
-router.get('/signup', function(req, res, next){
-  if(req.isAuthenticated()){
+router.get('/signup', (req, res, next) => {
+  if (req.isAuthenticated()) {
     res.redirect('/');
-  }else{
+  } else {
     res.render('signup');
   }
 });
 
 router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
-    function(req, res){
+    passport.authenticate('local', {failureRedirect: '/', failureFlash: true}),
+    (req, res) => {
       res.redirect('/chat');
-  if(req.isAuthenticated()){
+    });
+
+router.get('/logout', (req, res) => {
+  if (req.isAuthenticated()) {
     req.logout();
     res.redirect('/');
-  }else{
+  } else {
     res.redirect('/');
   }
 });
 
-router.get('/search', function(req, res){
+router.get('/search', (req, res) => {
   res.redirect('/chat');
 });
 
-router.get('/search/:message', function(req, res){
-  if(req.isAuthenticated()){
+router.get('/search/:message', (req, res) => {
+  if (req.isAuthenticated()) {
     const regex = new RegExp(req.params.message);
-    chat.find({ msg : { $regex : regex }}).sort({ createdAt : -1 }).exec((err, docs) => {
-      res.render('search',{ result : docs });
-    });
-  }else{
+    chat.find({msg: {$regex: regex}})
+        .sort({createdAt: -1})
+        .exec((err, docs) => {
+          if (err) throw new Error(500);
+          else chatRoom.find({}).sort({createdAt: 1}).exec((err, rooms) => {
+            res.render('search', {rooms: rooms, result: docs});
+          });
+        });
+  } else {
     res.redirect('/');
   }
 });
 
-module.exports = router;
+export default router;

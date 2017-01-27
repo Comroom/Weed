@@ -3,3 +3,6 @@
 
 #node_module
 /node_modules
+
+#build
+/build/

@@ -1,13 +1,14 @@
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let should = chai.should();
-let server = require('../../app.js');
+/* eslint no-undef:0, no-unused-vars:0, handle-callback-err:0*/
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const should = chai.should();
+const server = require('../../build/app.js').default;
 
 chai.use(chaiHttp);
 
 describe('Web Endpoint Test', () => {
   describe('GET request on /', () => {
-    it('should return 200', (done) => {
+    it('should return 200', done => {
       chai.request(server)
       .get('/')
       .end((err, res) => {
@@ -18,7 +19,7 @@ describe('Web Endpoint Test', () => {
   });
 
   describe('GET request on /chat', () => {
-    it('should return 200', (done) => {
+    it('should return 200', done => {
       chai.request(server)
       .get('/chat')
       .end((err, res) => {
@@ -29,7 +30,7 @@ describe('Web Endpoint Test', () => {
   });
 
   describe('GET request on /signup', () => {
-    it('should return 200', (done) => {
+    it('should return 200', done => {
       chai.request(server)
       .get('/signup')
       .end((err, res) => {
